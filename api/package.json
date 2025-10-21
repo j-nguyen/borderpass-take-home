@@ -1,0 +1,38 @@
+{
+  "name": "borderpass-code-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Johnny Nguyen",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "tsx --watch src/app.ts",
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "migrate": "npx drizzle-kit migrate",
+    
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.9.0",
+    "@types/pg": "^8.15.5",
+    "drizzle-kit": "^0.31.5",
+    "eslint": "^9.38.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.6",
+    "eslint-plugin-drizzle": "^0.2.3",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}

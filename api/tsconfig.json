@@ -1,0 +1,14 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "bundler",
+    "target": "esnext",
+    "types": [],
+    "outDir": "./dist",
+    "rootDir": "./",
+  },
+  
+  "include": ["**/*.ts"],
+  "exclude": ["dist"],
+}
