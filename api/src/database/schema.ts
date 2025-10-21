@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import { integer, boolean, pgEnum, pgTable, text, timestamp, varchar, uniqueIndex } from 'drizzle-orm/pg-core';
 
 // To make it easier, we will instantiate the schema tables through here
@@ -71,3 +72,25 @@ export const userQuestionAnswers = pgTable(
     uniqueIndex('user_id_question_selection_id').on(t.user_id, t.question_selection_id)
   ]
 )
+
+export const userQuestionAnswerRelations = relations(userQuestionAnswers, ({ one }) => ({
+  user: one(users, {
+    fields: [userQuestionAnswers.user_id],
+    references: [users.id]
+  }),
+  question_selection: one(questionSelections, {
+    fields: [userQuestionAnswers.question_selection_id],
+    references: [questionSelections.id]
+  })
+}))
+
+export const questionSelectionRelations = relations(questionSelections, ({ one, many }) => ({
+  question: one(questions, {
+    fields: [questionSelections.question_id],
+    references: [questions.id]
+  })
+}))
+
+export const questionRelations = relations(questions, ({ many }) => ({
+  question_selections: many(questionSelections)
+}))
