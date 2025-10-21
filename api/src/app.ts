@@ -1,16 +1,19 @@
 import express from 'express'
-import 'dotenv/config';
-import { drizzle } from 'drizzle-orm/node-postgres';
 
-const db = drizzle(process.env.DATABASE_URL);
+// Routes
+import questionRoutes from './routes/questions'
+// import userRoutes from './routes/users'
 
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// Middleware
+app.use(express.json())
 
+// Routes (API)
+app.use('/api', questionRoutes)
+
+// Listen to app
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

@@ -12,7 +12,6 @@
     "build": "tsc",
     "type-check": "tsc --noEmit",
     "migrate": "npx drizzle-kit migrate",
-    
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "echo \"Error: no test specified\" && exit 1"
