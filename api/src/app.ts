@@ -2,7 +2,8 @@ import express from 'express'
 
 // Routes
 import questionRoutes from './routes/questions'
-// import userRoutes from './routes/users'
+import questionAnswerRoutes from './routes/question-answers'
+import userRoutes from './routes/users'
 
 const app = express()
 const port = 3000
@@ -12,6 +13,8 @@ app.use(express.json())
 
 // Routes (API)
 app.use('/api', questionRoutes)
+app.use('/api', questionAnswerRoutes)
+app.use('/api', userRoutes)
 
 // Listen to app
 app.listen(port, () => {

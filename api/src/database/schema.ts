@@ -1,4 +1,4 @@
-import { bigint, boolean, pgEnum, pgTable, text, timestamp, unique, varchar } from 'drizzle-orm/pg-core';
+import { integer, boolean, pgEnum, pgTable, text, timestamp, unique, varchar } from 'drizzle-orm/pg-core';
 
 // To make it easier, we will instantiate the schema tables through here
 
@@ -30,7 +30,7 @@ const timestamps = {
 export const questions = pgTable(
   'questions',
   {
-    id: bigint({ mode: 'bigint' }).primaryKey().generatedAlwaysAsIdentity(),
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
     title: varchar('title').notNull(),
     question_type: questionTypes().default('short_answer').notNull(),
     required: boolean().default(true).notNull(),
@@ -41,8 +41,8 @@ export const questions = pgTable(
 export const questionAnswers = pgTable(
   'question_answers',
   {
-    id: bigint({ mode: 'bigint' }).primaryKey().generatedAlwaysAsIdentity(),
-    question_id: bigint({ mode: 'bigint' }).references(() => questions.id, { onDelete: 'cascade' }).notNull(),
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    question_id: integer().references(() => questions.id, { onDelete: 'cascade' }).notNull(),
     answer: text('title').notNull(),
     ...timestamps,
   }
@@ -51,7 +51,7 @@ export const questionAnswers = pgTable(
 export const users = pgTable(
   'users',
   {
-    id: bigint({ mode: 'bigint' }).primaryKey().generatedAlwaysAsIdentity(),
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
     email: varchar('email').notNull().unique(),
     ...timestamps,
   }
@@ -60,9 +60,9 @@ export const users = pgTable(
 export const userQuestionAnswers = pgTable(
   'user_question_answers',
   {
-    id: bigint({ mode: 'bigint' }).primaryKey().generatedAlwaysAsIdentity(),
-    user_id: bigint({ mode: 'bigint' }).references(() => users.id, { onDelete: 'cascade' }).notNull(),
-    question_answer_id: bigint({ mode: 'bigint' }).references(() => questionAnswers.id, { onDelete: 'cascade' }).notNull(),
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    user_id: integer().references(() => users.id, { onDelete: 'cascade' }).notNull(),
+    question_answer_id: integer().references(() => questionAnswers.id, { onDelete: 'cascade' }).notNull(),
     ...timestamps,
   },
   (t) => [
