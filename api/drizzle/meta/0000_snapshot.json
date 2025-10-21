@@ -1,38 +1,38 @@
 {
-  "id": "a811eab3-4786-4f92-88b8-74f1c9372a13",
+  "id": "035f93f7-a2aa-4644-9644-4670ac70d26b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.question_answers": {
-      "name": "question_answers",
+    "public.question_selections": {
+      "name": "question_selections",
       "schema": "",
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigint",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
           "identity": {
             "type": "always",
-            "name": "question_answers_id_seq",
+            "name": "question_selections_id_seq",
             "schema": "public",
             "increment": "1",
             "startWith": "1",
             "minValue": "1",
-            "maxValue": "9223372036854775807",
+            "maxValue": "2147483647",
             "cache": "1",
             "cycle": false
           }
         },
         "question_id": {
           "name": "question_id",
-          "type": "bigint",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "title": {
-          "name": "title",
+        "question_text": {
+          "name": "question_text",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -54,9 +54,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "question_answers_question_id_questions_id_fk": {
-          "name": "question_answers_question_id_questions_id_fk",
-          "tableFrom": "question_answers",
+        "question_selections_question_id_questions_id_fk": {
+          "name": "question_selections_question_id_questions_id_fk",
+          "tableFrom": "question_selections",
           "tableTo": "questions",
           "columnsFrom": [
             "question_id"
@@ -80,7 +80,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigint",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
           "identity": {
@@ -90,7 +90,7 @@
             "increment": "1",
             "startWith": "1",
             "minValue": "1",
-            "maxValue": "9223372036854775807",
+            "maxValue": "2147483647",
             "cache": "1",
             "cycle": false
           }
@@ -145,7 +145,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigint",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
           "identity": {
@@ -155,20 +155,20 @@
             "increment": "1",
             "startWith": "1",
             "minValue": "1",
-            "maxValue": "9223372036854775807",
+            "maxValue": "2147483647",
             "cache": "1",
             "cycle": false
           }
         },
         "user_id": {
           "name": "user_id",
-          "type": "bigint",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "question_answer_id": {
-          "name": "question_answer_id",
-          "type": "bigint",
+        "question_selection_id": {
+          "name": "question_selection_id",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
@@ -187,7 +187,29 @@
           "default": "now()"
         }
       },
-      "indexes": {},
+      "indexes": {
+        "user_id_question_selection_id": {
+          "name": "user_id_question_selection_id",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "question_selection_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
       "foreignKeys": {
         "user_question_answers_user_id_users_id_fk": {
           "name": "user_question_answers_user_id_users_id_fk",
@@ -202,12 +224,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "user_question_answers_question_answer_id_question_answers_id_fk": {
-          "name": "user_question_answers_question_answer_id_question_answers_id_fk",
+        "user_question_answers_question_selection_id_question_selections_id_fk": {
+          "name": "user_question_answers_question_selection_id_question_selections_id_fk",
           "tableFrom": "user_question_answers",
-          "tableTo": "question_answers",
+          "tableTo": "question_selections",
           "columnsFrom": [
-            "question_answer_id"
+            "question_selection_id"
           ],
           "columnsTo": [
             "id"
@@ -217,16 +239,7 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "user_id_question_answer_id": {
-          "name": "user_id_question_answer_id",
-          "nullsNotDistinct": false,
-          "columns": [
-            "user_id",
-            "question_answer_id"
-          ]
-        }
-      },
+      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
@@ -237,7 +250,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigint",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
           "identity": {
@@ -247,7 +260,7 @@
             "increment": "1",
             "startWith": "1",
             "minValue": "1",
-            "maxValue": "9223372036854775807",
+            "maxValue": "2147483647",
             "cache": "1",
             "cycle": false
           }

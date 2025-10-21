@@ -2,7 +2,7 @@ import express from 'express'
 
 // Routes
 import questionRoutes from './routes/questions.js'
-import questionAnswerRoutes from './routes/question-answers.js'
+import questionSelectionRoutes from './routes/question-selections.js'
 import userRoutes from './routes/users.js'
 
 const app = express()
@@ -13,7 +13,7 @@ app.use(express.json())
 
 // Routes (API)
 app.use('/api', questionRoutes)
-app.use('/api', questionAnswerRoutes)
+app.use('/api', questionSelectionRoutes)
 app.use('/api', userRoutes)
 
 // Listen to app

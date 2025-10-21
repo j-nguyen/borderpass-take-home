@@ -1,4 +1,4 @@
-import { integer, boolean, pgEnum, pgTable, text, timestamp, unique, varchar } from 'drizzle-orm/pg-core';
+import { integer, boolean, pgEnum, pgTable, text, timestamp, varchar, uniqueIndex } from 'drizzle-orm/pg-core';
 
 // To make it easier, we will instantiate the schema tables through here
 
@@ -10,14 +10,14 @@ export const questionTypes = pgEnum('question_types', ['dropdown', 'multiple_cho
  * Questions Table
  * ID, title, question_type, required, created_at, updated_at
  * 
- * Question_Answers Table
+ * question_selections Table
  * ID, question_id, answer, created_at, updated_at
  * 
  * Users Table
  * ID, email, created_at, updated_at
  * 
- * User Question_Answers Table
- * ID, user_id, question_answers_id, created_at, updated_at
+ * User question_selections Table
+ * ID, user_id, question_selections_id, created_at, updated_at
  */
 
 
@@ -38,12 +38,12 @@ export const questions = pgTable(
   }
 )
 
-export const questionAnswers = pgTable(
-  'question_answers',
+export const questionSelections = pgTable(
+  'question_selections',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     question_id: integer().references(() => questions.id, { onDelete: 'cascade' }).notNull(),
-    answer: text('title').notNull(),
+    question_text: text().notNull(),
     ...timestamps,
   }
 )
@@ -52,7 +52,7 @@ export const users = pgTable(
   'users',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    email: varchar('email').notNull().unique(),
+    email: varchar().notNull().unique(),
     ...timestamps,
   }
 )
@@ -62,10 +62,10 @@ export const userQuestionAnswers = pgTable(
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     user_id: integer().references(() => users.id, { onDelete: 'cascade' }).notNull(),
-    question_answer_id: integer().references(() => questionAnswers.id, { onDelete: 'cascade' }).notNull(),
+    question_selection_id: integer().references(() => questionSelections.id, { onDelete: 'cascade' }).notNull(),
     ...timestamps,
   },
   (t) => [
-    unique('user_id_question_answer_id').on(t.user_id, t.question_answer_id)
+    uniqueIndex('user_id_question_selection_id').on(t.user_id, t.question_selection_id)
   ]
 )
