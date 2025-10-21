@@ -1,0 +1,21 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/usr/src/app
+    env_file:
+      - api/.env
+    command: npm run dev
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:18-alpine
+    logging:
+      driver: none
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=borderpass_demo
