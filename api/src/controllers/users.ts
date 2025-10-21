@@ -1,6 +1,6 @@
 import { sql, eq } from 'drizzle-orm'
-import db from '../database/db'
-import { users, users as usersTable } from '../database/schema'
+import db from '../database/db.js'
+import { users, users as usersTable } from '../database/schema.js'
 
 // Just using this as an example, since this is a simple questionnaire app, I did based on email
 // If more time, we can setup a login system.

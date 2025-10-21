@@ -1,5 +1,5 @@
-import db from '../database/db'
-import { questions as questionsTable } from '../database/schema'
+import db from '../database/db.js'
+import { questions as questionsTable } from '../database/schema.js'
 
 export const getQuestions = async(req, res) => { 
   const result = await db.select().from(questionsTable).execute()

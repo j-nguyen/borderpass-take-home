@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import questionAnswersController from '../controllers/question-answers'
+import questionAnswersController from '../controllers/question-answers.js'
 
 const router = Router()
 

@@ -1,9 +1,9 @@
 import express from 'express'
 
 // Routes
-import questionRoutes from './routes/questions'
-import questionAnswerRoutes from './routes/question-answers'
-import userRoutes from './routes/users'
+import questionRoutes from './routes/questions.js'
+import questionAnswerRoutes from './routes/question-answers.js'
+import userRoutes from './routes/users.js'
 
 const app = express()
 const port = 3000
