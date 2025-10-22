@@ -12,7 +12,7 @@ RUN npm ci
 # Copy source files into application directory
 COPY --chown=node:node . /usr/src/app
 
-EXPOSE 3000
+EXPOSE 8080
 
 # Run the app
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]

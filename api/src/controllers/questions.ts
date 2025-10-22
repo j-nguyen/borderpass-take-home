@@ -18,7 +18,6 @@ export const createQuestion = async(req, res) => {
 
   if (req.body.question_selections) {
     const updatedSelections = req.body.question_selections.map(q => ({ ...q, question_id: newQuestion[0].id }))
-    console.log(updatedSelections)
     await db.insert(questionSelectionsTable).values(updatedSelections)
   }
 

@@ -10,6 +10,17 @@ services:
     command: npm run dev
     depends_on:
       - postgres
+  app:
+    build: ./app
+    ports:
+      - 8080:5173
+    volumes:
+      - ./app:/usr/src/app
+    env_file:
+      - app/.env
+    command: npm run dev
+    depends_on:
+      - api
   postgres:
     image: postgres:18-alpine
     logging:

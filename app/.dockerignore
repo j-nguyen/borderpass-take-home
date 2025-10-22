@@ -1,7 +1,4 @@
+.react-router
+build
 node_modules
-.git
-.gitignore
-coverage
-Dockerfile
-dist
-
+README.md
