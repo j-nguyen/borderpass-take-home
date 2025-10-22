@@ -64,6 +64,7 @@ export const userQuestionAnswers = pgTable(
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     user_id: integer().references(() => users.id, { onDelete: 'cascade' }).notNull(),
+    question_id: integer().references(() => questions.id, { onDelete: 'cascade' }).notNull(),
     question_selection_id: integer().references(() => questionSelections.id, { onDelete: 'cascade' }),
     answer: text(), // for long/short answers
     ...timestamps,
@@ -81,6 +82,10 @@ export const userQuestionAnswerRelations = relations(userQuestionAnswers, ({ one
   question_selection: one(questionSelections, {
     fields: [userQuestionAnswers.question_selection_id],
     references: [questionSelections.id]
+  }),
+  question: one(questions, {
+    fields: [userQuestionAnswers.question_id],
+    references: [questions.id]
   })
 }))
 

@@ -22,11 +22,11 @@ export const getUserQuestionAnswer = async(req, res) => {
 
 export const createUserQuestionAnswer = async(req, res) => {
   const data = {
+    // TODO: If more time, we only allow one or the other
     question_id: req.body.question_id,
     user_id: req.body.user_id,
-    // TODO: If more time, we only allow one or the other
-    question_selection_id: req.body.question_selection_id,
-    answer: req.body.answer
+    question_selection_id: req.body?.question_selection_id,
+    answer: req.body?.answer
   }
 
   try {
@@ -40,9 +40,9 @@ export const createUserQuestionAnswer = async(req, res) => {
 
 export const updateUserQuestionAnswer = async(req, res) => {
   const data = {
+    // TODO: If more time, we only allow one or the other
     question_id: req.body.question_id,
     user_id: req.body.user_id,
-    // TODO: If more time, we only allow one or the other
     question_selection_id: req.body.question_selection_id,
     answer: req.body.answer
   }
