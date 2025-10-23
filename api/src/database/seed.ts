@@ -71,10 +71,6 @@ const questions: { id: number; title: string; question_type: any; required?: boo
       question_text: 'Montreal',
     },
     {
-      question_id: 4,
-      question_text: 'Montreal',
-    },
-    {
       question_id: 5,
       question_text: 'Facebook',
     },
