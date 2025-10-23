@@ -28,7 +28,7 @@ const MultipleChoice = ({ question, answers, answerCallback }: { question: Quest
 
   return (
     <FormGroup className="mb-3">
-      <Form.Label>{question.title}.</Form.Label>
+      <Form.Label>{question.title}</Form.Label>
       { question.required && <Badge pill className="ml-3" bg="danger">
         Required
       </Badge>

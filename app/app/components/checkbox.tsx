@@ -4,13 +4,13 @@ import type { Question } from "~/models/question";
 
 const Checkbox = ({ question, answers, answerCallback }: { question: Question, answers: Record<string, any>[], answerCallback(data: Record<string, any>, isCheckbox: boolean): void }): JSX.Element => {
   // pre-initialize the arrays 
-  const [checkedAnswers, setCheckedAnswers] = useState<boolean[]>(new Array(question.question_selections.length).fill(false))
+  const [checkedAnswers, setCheckedAnswers] = useState<boolean[]>(new Array(question.question_selections!.length).fill(false))
 
   function isChecked(questionSelectionId: number): boolean {
     return answers?.some(ans => ans.question_selection_id === questionSelectionId) ?? false
   }
 
-  const checkboxes = question.question_selections.map((questionSelection, index) => {
+  const checkboxes = question.question_selections!.map((questionSelection, index) => {
     return (
       <div key={`checkbox-${questionSelection.id}`} className="mt-3">
         <Form.Check 
@@ -37,7 +37,7 @@ const Checkbox = ({ question, answers, answerCallback }: { question: Question, a
 
       return {
         question_id: question.id,
-        question_selection_id: question.question_selections[index].id
+        question_selection_id: question.question_selections![index].id
       }
     }).filter(d => d !== null)
 
