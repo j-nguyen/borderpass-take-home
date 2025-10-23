@@ -1,10 +1,12 @@
 import { sql, eq } from 'drizzle-orm'
 import db from '../database/db.js'
 import { users, users as usersTable } from '../database/schema.js'
+import { validationResult } from 'express-validator'
 
 // Just using this as an example, since this is a simple questionnaire app, I did based on email
 // If more time, we can setup a login system.
 export const getUserByEmail = async(req, res) => { 
+  // Go through our query
   const result = await db.query.users.findFirst({
     where: eq(sql`LOWER(${users.email})`, sql`LOWER(${sql.placeholder('email')})`)
   })
