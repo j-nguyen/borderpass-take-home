@@ -2,6 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     "skipLibCheck": true,
+    "isolatedModules": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "target": "esnext",
@@ -10,5 +11,5 @@
     "rootDir": "./",
   },
   "include": ["**/*.ts"],
-  "exclude": ["dist"],
+  "exclude": ["dist", "**/*.test.ts"],
 }
